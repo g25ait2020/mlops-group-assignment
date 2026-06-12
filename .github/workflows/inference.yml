@@ -24,6 +24,6 @@ jobs:
         env:
           # Public model — HF_TOKEN is optional but supported (Task 7.3 GitHub Secrets).
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-          HF_MODEL_NAME: your-username/distilbert-emotion
+          HF_MODEL_NAME: Vivek-ML-Projects/distilbert-emotion
           INPUT_TEXT: ${{ github.event.inputs.input_text }}
         run: python src/inference.py
