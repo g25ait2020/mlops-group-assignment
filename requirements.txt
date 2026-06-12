@@ -1,0 +1,6 @@
+# Inference + CI dependencies (kept slim for a small Docker image and fast CI).
+# CPU build of torch is sufficient for inference; training uses requirements-train.txt on Kaggle.
+transformers==4.44.2
+torch==2.4.1
+huggingface_hub==0.25.1
+numpy==1.26.4

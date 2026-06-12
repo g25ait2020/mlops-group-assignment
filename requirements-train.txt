@@ -1,0 +1,7 @@
+# Training dependencies (used on Kaggle / locally for fine-tuning — NOT in Docker/CI).
+-r requirements.txt
+datasets==2.21.0
+scikit-learn==1.5.2
+wandb==0.18.3
+accelerate==0.34.2
+pandas==2.2.2
