@@ -1,0 +1,29 @@
+name: Inference
+
+# Task 7.2 — Inference workflow. Triggered MANUALLY from the Actions tab.
+# Pulls the public model from Hugging Face and classifies the supplied text.
+on:
+  workflow_dispatch:
+    inputs:
+      input_text:
+        description: 'Text to classify'
+        required: true
+        default: 'I am so happy and grateful today!'
+
+jobs:
+  infer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run inference
+        env:
+          # Public model — HF_TOKEN is optional but supported (Task 7.3 GitHub Secrets).
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_MODEL_NAME: your-username/distilbert-emotion
+          INPUT_TEXT: ${{ github.event.inputs.input_text }}
+        run: python src/inference.py

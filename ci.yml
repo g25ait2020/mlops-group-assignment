@@ -1,0 +1,22 @@
+name: CI
+
+# Task 7.1 — CI (lint only). Triggers on push to develop and PRs into main.
+# NOTE: GitHub Actions is used ONLY for CI + inference, never for training.
+on:
+  push:
+    branches: [develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install -r requirements.txt flake8
+      - name: Lint with flake8
+        run: flake8 src/ --max-line-length=120
